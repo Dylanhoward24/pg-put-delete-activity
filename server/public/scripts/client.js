@@ -8,6 +8,7 @@ function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
 
   // TODO - Add code for edit & delete buttons
+  $(document).on('click', '.deleteBtn', handleDelete);
 }
 
 function handleSubmit() {
@@ -16,6 +17,25 @@ function handleSubmit() {
   book.author = $('#author').val();
   book.title = $('#title').val();
   addBook(book);
+}
+
+function handleDelete() {
+  console.log('in handleDelete');
+
+  let bookId = $(this).closest('tr').data('id');
+
+  $.ajax({
+      method: 'DELETE',
+      url: `/books/${bookId}`
+  }).then((res) => {
+    console.log('DELETE /books', res);
+    
+    // refresh the data
+    refreshBooks();
+  }).catch((err) => {
+    console.log('DELETE /books error', err);
+    alert('DELETE /books failed!');
+  });
 }
 
 // adds a book to the database
