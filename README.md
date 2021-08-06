@@ -30,7 +30,6 @@ Add another button to each book allowing the user to `Mark as Read`. This should
 - [ ] DELETE & PUT SERVER SIDE 
 - [ ] Page should refresh with up to date data after a DELETE or PUT
 
-
 ## Stretch Goals
 
 ### Enhanced edit

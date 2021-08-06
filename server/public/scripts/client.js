@@ -22,11 +22,14 @@ function handleSubmit() {
 function handleDelete() {
   console.log('in handleDelete');
 
-  let bookId = $(this).closest('tr').data('id');
+  let tr = $(this).parents('tr');
+  console.log(tr);
+  let id = tr.data('id');
+  console.log('id', id);
 
   $.ajax({
       method: 'DELETE',
-      url: `/books/${bookId}`
+      url: `/books/${id}`
   }).then((res) => {
     console.log('DELETE /books', res);
     
@@ -75,7 +78,7 @@ function renderBooks(books) {
     let book = books[i];
     // For each book, append a new row to our table
     $('#bookShelf').append(`
-      <tr>
+      <tr data-id="${book.id}">
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>

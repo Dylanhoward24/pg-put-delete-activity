@@ -44,10 +44,12 @@ router.post('/',  (req, res) => {
 // Removes a book to show that it has been read
 // Request must include a parameter indicating what book to update - the id
 router.delete('/:id', (req, res) => {
+  console.log('req.params.id', req.params.id);
+  
   // const idToDelete = req.params.id;
   let queryText = `
     DELETE FROM "books"
-    WHERE "id" = $1
+    WHERE "id" = $1;
   `;
   const sqlParams = [
     req.params.id
@@ -59,6 +61,5 @@ router.delete('/:id', (req, res) => {
       console.log('DELETE error', err);
     });
 });
-
 
 module.exports = router;
